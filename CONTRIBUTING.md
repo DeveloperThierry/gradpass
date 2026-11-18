@@ -1,7 +1,7 @@
 # Contributing to GradPass
 
 Thank you for considering contributing to **GradPass**!
-We welcome contributions from everyone, whether it's fixing a bug, adding a new feature, or optimizing the codebase.
+We welcome contributions from everyone, whether it's fixing a bug, refining the campus meetup flow, or optimizing the codebase.
 
 ---
 
@@ -16,8 +16,8 @@ We welcome contributions from everyone, whether it's fixing a bug, adding a new 
 ## How to Contribute
 
 1. **Fork** the repo
-2. **Create a new branch** (example: `git checkout -b feature/added-about-page`)
-3. **Make your changes** (UI, animations, pages, etc.)
+2. **Create a new branch** (example: `git checkout -b feature/campus-meetup-filter`)
+3. **Make your changes** (UI, ticket filters, meetup checkout flow, etc.)
 4. **Commit and push**
 5. **Open a Pull Request (PR)**
 
@@ -25,22 +25,24 @@ We welcome contributions from everyone, whether it's fixing a bug, adding a new 
 
 ## Development Setup
 
-- Use **Next.js** and **Tailwind CSS**
-- Run `npm run dev` for local development.
-- Keep code **clean, modular and reusable**
+- Use **Next.js (App Router)**, **PostgreSQL (Neon) / Prisma**, and **Tailwind CSS**
+- Configure your `.env` file and run `npx prisma db push` to sync the existing schema
+- Run `npm run dev` for local development
+- Keep code **clean, modular, and reusable**
 - Prefer functional components and hooks
-- Follow existing folder structure and naming conventions
+- Follow existing folder structure, database schema, and naming conventions
 
 ---
 
 ## Contribution Guidelines
 
-- **Small, Focused PRs** → Don’t bundle unrelated changes in one PR  
-- **Commit Messages** → Use clear and descriptive messages (e.g., `feat: add new feature`, `fix: resolve issue #123`).
-- **Code Style** → Follow the existing code style (e.g., indentation, naming conventions, etc.).
+- **Preserve Schema & Settlement Scope** → Keep modifications aligned with the existing database schema and zero-upfront-risk meetup settlement workflow (do not introduce external credit card payment gateways)
+- **Small, Focused PRs** → Don’t bundle unrelated changes in one PR
+- **Commit Messages** → Use clear and descriptive messages (e.g., `feat: add ceremony filter`, `fix: resolve meetup time validation`).
+- **Code Style** → Follow the existing code style (e.g., indentation, naming conventions, etc.)
 - **Accessibility** → Ensure that the website is accessible to all users
-- **Discussions First** → For large changes (new features, big design changes), discuss the changes first to avoid wasting time on implementation.
-- **Respect Others** → Follow the [Code of Conduct](./CODE_OF_CONDUCT.md)  
+- **Discussions First** → For large changes (new features, big design changes), discuss the changes first to avoid wasting time on implementation
+- **Respect Others** → Follow the [Code of Conduct](./CODE_OF_CONDUCT.md)
 
 ---
 
@@ -48,22 +50,22 @@ We welcome contributions from everyone, whether it's fixing a bug, adding a new 
 
 Here are some areas where you can contribute:
 
-**Vendor-Specific Features:**
-- **Vendor Dashboard:** Build or enhance pages for vendors to manage products, view sales analytics, and handle orders.
-- **Product Management:** Implement features for vendors to add, edit, and remove their products.
-- **Vendor Onboarding:** Create or improve the registration and verification process for new vendors.
+**Student Seller Features:**
+- **Seller Dashboard:** Enhance views for graduating students to track ticket reservations, manage availability, and update meetup statuses (`Pending Confirmation`, `Reserved for Meetup`, `Ticket Transferred`).
+- **Ticket Listing Management:** Improve forms and AI description prompts for adding, editing, and removing extra ceremony, VIP, parking, or Grad Night passes.
+- **Student Verification & Onboarding:** Streamline seller profile setup with graduation class details, preferred meetup spots, and accepted peer-to-peer payment methods (Venmo, Zelle, Cash).
 
-**Customer-Facing Features:**
-- **Product Discovery:** Add advanced filtering and sorting options (e.g., by vendor, by rating).
-- **Vendor Profiles:** Create public-facing pages for each vendor to showcase their brand and products.
-- **Shopping Cart & Checkout:** Improve the cart functionality to handle products from multiple vendors.
+**Student Buyer Features:**
+- **Ticket Discovery:** Add filtering and sorting options by ceremony category (`Main Ceremony`, `Department`, `VIP`, `Parking`, `Grad Night`), seating section, or price.
+- **Seller Profiles:** Enhance public-facing pages for student sellers to display their graduating class, campus meetup preferences, and peer reviews.
+- **Reservation & Meetup Checkout:** Improve the reservation flow for coordinating campus meetup locations, preferred times, and SMS/ticket transfer details.
 
 **General Improvements:**
-- **UI/UX:** Suggest and implement new design ideas to improve user experience.
-- **Performance:** Optimize components and queries for faster load times.
-- **Accessibility:** Enhance accessibility across the platform.
+- **UI/UX:** Suggest and implement design improvements tailored for college seniors and their families.
+- **Performance:** Optimize components and Prisma queries for faster load times.
+- **Accessibility:** Enhance keyboard navigation and screen-reader support across the platform.
 - **Animations:** Add subtle animations and transitions to make the UI more engaging.
-- **Admin Panel:** Develop features for platform administrators to manage vendors, products, and commissions.
+- **Admin Panel:** Improve tools for campus administrators to review student seller applications, moderate listings, and monitor platform activity.
 
 ---
 
