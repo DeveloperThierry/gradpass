@@ -56,19 +56,19 @@ export default function CreateStore() {
                         </div>
 
                         <label className="mt-10 cursor-pointer">
-                            Store Logo
+                            Student Profile Photo
                             <Image src={storeInfo.image ? URL.createObjectURL(storeInfo.image) : assets.upload_area} className="rounded-lg mt-2 h-16 w-auto" alt="" width={150} height={100} />
                             <input type="file" accept="image/*" onChange={(e) => setStoreInfo({ ...storeInfo, image: e.target.files[0] })} hidden />
                         </label>
 
-                        <p>Username</p>
-                        <input name="username" onChange={onChangeHandler} value={storeInfo.username} type="text" placeholder="Enter your store username" className="border border-slate-300 outline-slate-400 w-full max-w-lg p-2 rounded" />
+                        <p>Seller Handle</p>
+                        <input name="username" onChange={onChangeHandler} value={storeInfo.username} type="text" placeholder="Enter your store username (e.g., sarahm2026)" className="border border-slate-300 outline-slate-400 w-full max-w-lg p-2 rounded" />
 
-                        <p>Student Name</p>
-                        <input name="name" onChange={onChangeHandler} value={storeInfo.name} type="text" placeholder="Enter your store name" className="border border-slate-300 outline-slate-400 w-full max-w-lg p-2 rounded" />
+                        <p>Student Name & Graduating Class</p>
+                        <input name="name" onChange={onChangeHandler} value={storeInfo.name} type="text" placeholder="Enter your store name (e.g., Sarah M. - Class of 2026)" className="border border-slate-300 outline-slate-400 w-full max-w-lg p-2 rounded" />
 
-                        <p>Description</p>
-                        <textarea name="description" onChange={onChangeHandler} value={storeInfo.description} rows={5} placeholder="Enter your store description" className="border border-slate-300 outline-slate-400 w-full max-w-lg p-2 rounded resize-none" />
+                        <p>University Name & Preferred Payment App</p>
+                        <textarea name="description" onChange={onChangeHandler} value={storeInfo.description} rows={5} placeholder="Enter your store description (e.g. Accepting Venmo/Zelle at Student Union)" className="border border-slate-300 outline-slate-400 w-full max-w-lg p-2 rounded resize-none" />
 
                         <p>Email</p>
                         <input name="email" onChange={onChangeHandler} value={storeInfo.email} type="email" placeholder="Enter your store email" className="border border-slate-300 outline-slate-400 w-full max-w-lg p-2 rounded" />
@@ -76,8 +76,8 @@ export default function CreateStore() {
                         <p>Contact Number</p>
                         <input name="contact" onChange={onChangeHandler} value={storeInfo.contact} type="text" placeholder="Enter your store contact number" className="border border-slate-300 outline-slate-400 w-full max-w-lg p-2 rounded" />
 
-                        <p>Address</p>
-                        <textarea name="address" onChange={onChangeHandler} value={storeInfo.address} rows={5} placeholder="Enter your store address" className="border border-slate-300 outline-slate-400 w-full max-w-lg p-2 rounded resize-none" />
+                        <p>Campus Meetup Spot</p>
+                        <textarea name="address" onChange={onChangeHandler} value={storeInfo.address} rows={5} placeholder="Enter your store address (e.g. Student Union Starbucks, Main Campus)" className="border border-slate-300 outline-slate-400 w-full max-w-lg p-2 rounded resize-none" />
 
                         <button className="bg-slate-800 text-white px-12 py-2 rounded mt-10 mb-40 active:scale-95 hover:bg-slate-900 transition ">Submit</button>
                     </form>
