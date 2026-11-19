@@ -4,7 +4,7 @@ import StoreProvider from "@/app/StoreProvider";
 import "./globals.css";
 import { ClerkProvider, Show, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs'
 
-const outfit = Outfit({ subsets: ["latin"], weight: ["400", "500", "600"] });
+const outfit = Outfit({ subsets: ["latin"]});
 
 export const metadata = {
     title: "GradPass",
