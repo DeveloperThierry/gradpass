@@ -1,6 +1,5 @@
-import { inngest } from "./client";
-import { prisma } from '@/lib/prisma';
-
+import { inngest } from "./client.js";
+import prisma from "@/lib/prisma.js";
 // Inngest function to save user data to a database
 export const syncUserCreation = inngest.createFunction(
     { 
