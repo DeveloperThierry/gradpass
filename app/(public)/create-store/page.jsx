@@ -9,7 +9,7 @@ export default function CreateStore() {
 
     const [alreadySubmitted, setAlreadySubmitted] = useState(false)
     const [status, setStatus] = useState("")
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState("")
 
     const [storeInfo, setStoreInfo] = useState({
