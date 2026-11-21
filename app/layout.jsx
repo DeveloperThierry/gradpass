@@ -7,8 +7,8 @@ import { ClerkProvider, Show, SignInButton, SignUpButton, UserButton } from '@cl
 const outfit = Outfit({ subsets: ["latin"]});
 
 export const metadata = {
-    title: "GradPass",
-    description: "GradPass",
+    title: "GradPass - App",
+    description: "GradPass - App",
 };
 
 export default function RootLayout({ children }) {
