@@ -14,7 +14,7 @@ export default function CreateStore() {
     const {getToken} = useAuth()
     const [alreadySubmitted, setAlreadySubmitted] = useState(false)
     const [status, setStatus] = useState("")
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [message, setMessage] = useState("")
 
     const [storeInfo, setStoreInfo] = useState({
@@ -58,7 +58,7 @@ export default function CreateStore() {
             }
         } catch (error){
             toast.error(error?.response?.data?.error || error.message)
-        }
+        } 
         
         setLoading(false)
     }
