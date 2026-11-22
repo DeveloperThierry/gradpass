@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma"
 import authSeller from "@/middlewares/authSeller"
+import { getAuth } from "@clerk/nextjs/server"
 import { NextResponse } from "next/server"
 
 // toggle stock of a product
@@ -23,7 +24,7 @@ export async function POST(request){
             data:{inStock:!product.inStock},
         })
 
-        return NextResponse.json({messagee:"Product stock updated successfully"})
+        return NextResponse.json({message:"Product stock updated successfully"})
     } catch (error) {
         console.error(error)
         return NextResponse.json({error:error.code || error.message}, {status:400})
