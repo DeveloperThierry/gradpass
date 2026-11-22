@@ -78,7 +78,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <p className="py-4 text-sm text-slate-500">
-                    Copyright 2025 © gradpass All Right Reserved.
+                    Copyright  {new Date().getFullYear()} © gradpass All Right Reserved.
                 </p>
             </div>
         </footer>
