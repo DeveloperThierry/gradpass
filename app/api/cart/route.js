@@ -18,3 +18,19 @@ export async function POST(request){
         return NextResponse.json({error:"An internal server error occurred"}, {status:500})
     }
 }
+
+// Get user cart
+export async function GET(request){
+    try {
+        const {userId} = getAuth(request)
+        //Save the cart to the user object
+        const user = await prisma.user.findUnique({
+            where:{id:userId}
+        })
+
+        return NextResponse.json({cart:user.cart})
+    } catch (error) {
+        console.error(error)
+        return NextResponse.json({error:"An internal server error occurred"}, {status:500})
+    }
+}
