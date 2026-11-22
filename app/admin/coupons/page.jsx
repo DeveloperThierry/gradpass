@@ -6,11 +6,13 @@ import { DeleteIcon } from "lucide-react"
 import { couponDummyData } from "@/assets/assets"
 import { useAuth } from "@clerk/nextjs"
 import axios from "axios"
+import Loading from "@/components/Loading"
 
 export default function AdminCoupons() {
     const {getToken} = useAuth()
     const [coupons, setCoupons] = useState([])
-
+    const [loading, setLoading] = useState(true)
+    
     const [newCoupon, setNewCoupon] = useState({
         code: '',
         description: '',
@@ -30,7 +32,8 @@ export default function AdminCoupons() {
             setCoupons(data.coupons)
         } catch (error) {
             toast.error(error?.response?.data?.error || error.message)
-        }
+        } 
+        setLoading(false)
     }
 
     const handleAddCoupon = async (e) => {
@@ -72,7 +75,7 @@ export default function AdminCoupons() {
         fetchCoupons();
     }, [])
 
-    return (
+    return !loading ? (
         <div className="text-slate-500 mb-40">
 
             {/* Add Coupon */}
@@ -159,5 +162,5 @@ export default function AdminCoupons() {
                 </div>
             </div>
         </div>
-    )
+    ): <Loading />
 }
