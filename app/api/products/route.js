@@ -1,0 +1,26 @@
+import prisma from "@/lib/prisma";
+import { NextResponse } from "next/server";
+
+export async function GET(request){
+    try {
+        let products = await prisma.product.findMany({
+            where:{inStock:true},
+            include:{
+                rating:{
+                    select:{
+                        createdAt:true,
+                        user:{select:{name:true, image:true}}
+                    }
+                },
+                store:true
+            },
+            orderBy:{createdAt:'desc'}
+        })
+        //filter out inactive products
+        products = products.filter(product => product.store.isActive)
+        return NextResponse.json({products})
+    } catch (error) {
+        console.error(error)
+        return NextResponse.json({error:"An internal server error occurred"}, {status:500})
+    }
+}
