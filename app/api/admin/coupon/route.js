@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 export async function POST(request){
     try {
         const {userId} = getAuth()
-        const isAdmin = await authAdmin()
+        const isAdmin = await authAdmin(userId)
         if(!isAdmin){
             return NextResponse.json({error:'not authorized'}, {status:401})
         }
@@ -25,7 +25,7 @@ export async function POST(request){
 export async function DELETE(request){
     try {
         const {userId} = getAuth()
-        const isAdmin = await authAdmin()
+        const isAdmin = await authAdmin(userId)
         if(!isAdmin){
             return NextResponse.json({error:'not authorized'}, {status:401})
         }
@@ -33,6 +33,22 @@ export async function DELETE(request){
         const code = searchParams.get('code')
         await prisma.coupon.delete({where:{code}})
         return NextResponse.json({message:'Coupon deleted successfully'})
+    } catch (error) {
+        console.error(error)
+        return NextResponse.json({error:error.code || error.message}, {status:400})
+    }
+}
+
+// get all coupons
+export async function GET(request){
+    try {
+        const {userId} = getAuth()
+        const isAdmin = await authAdmin(userId)
+        if(!isAdmin){
+            return NextResponse.json({error:'not authorized'}, {status:401})
+        }
+        const coupons = await prisma.coupon.findMany({})
+        return NextResponse.json({coupons})
     } catch (error) {
         console.error(error)
         return NextResponse.json({error:error.code || error.message}, {status:400})
