@@ -12,7 +12,7 @@ export async function GET(request) {
         if(!isAdmin) return NextResponse.json({error:'not authorized'}, {status:401})
 
         const stores = await prisma.store.findMany({
-            where:{status:{in:"approved"}},
+            where:{status:"approved"},
             include:{user:true}
         })
 
