@@ -80,7 +80,7 @@ export default function StoreAddProduct() {
 
             <br />
 
-            <button disabled={loading} className="bg-slate-800 text-white px-6 mt-7 py-2 hover:bg-slate-900 rounded transition">Add Product</button>
+            <button disabled={loading} className="bg-slate-800 text-white px-6 mt-7 py-2 hover:bg-slate-900 rounded transition">List Ticket</button>
         </form>
     )
 }

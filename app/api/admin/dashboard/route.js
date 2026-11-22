@@ -31,6 +31,7 @@ export async function GET(request){
         // total product count
         const products = await prisma.product.count()
         const dashboardData = {
+            allOrders,
             orders,
             stores,
             products,
