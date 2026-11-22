@@ -18,3 +18,5 @@ const authSeller = async (userId) => {
         return false
     }
 }
+
+export default authSeller
