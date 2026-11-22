@@ -28,7 +28,16 @@ export default function StoreOrders() {
 
     const updateOrderStatus = async (orderId, status) => {
         // Logic to update the status of an order
-
+        try {
+            const token = await getToken()
+            const {data} = await axios.post('/api/store/orders',{orderId, status},  {headers:{
+                Authorization:`Bearer ${token}`
+            }})
+            setOrders(prev => prev.map((order) => order.id === orderId ? {...order, status} : order))
+            toast.success(data.message)
+        } catch (error) {
+            toast.error(error?.response?.data?.error || error.message)
+        }
 
     }
 
