@@ -15,7 +15,7 @@ export async function POST(request){
         return NextResponse.json({message:"Cart updated"})
     } catch (error) {
         console.error(error)
-        return NextResponse.json({error:"An internal server error occurred"}, {status:500})
+        return NextResponse.json({error:error.message}, {status:400})
     }
 }
 
@@ -31,6 +31,6 @@ export async function GET(request){
         return NextResponse.json({cart:user.cart})
     } catch (error) {
         console.error(error)
-        return NextResponse.json({error:"An internal server error occurred"}, {status:500})
+        return NextResponse.json({error:error.message}, {status:400})
     }
 }
