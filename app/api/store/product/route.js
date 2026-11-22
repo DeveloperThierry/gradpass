@@ -1,5 +1,6 @@
 import imagekit from "@/configs/imageKit";
 import prisma from "@/lib/prisma";
+import authSeller from "@/middlewares/authSeller";
 import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
@@ -16,11 +17,11 @@ export async function POST(request){
         const mrp = Number(formData.get("mrp"))
         const price = Number(formData.get("price"))
         const category = formData.get("category")
-        const images = formData.get("images")
+        const images = formData.getAll("images")
         if(!name || !description || !mrp || !price || !category || images.length < 1) return  NextResponse.json({error:"missing product details authorized"}, {status:400})
 
         //uploading images to imagekit
-        const imagesUrl = await Promise.all(images.map(async (image) => {
+        const imageUrl = await Promise.all(images.map(async (image) => {
             const buffer = Buffer.from(await image.arrayBuffer())
             const response = await imagekit.upload({
                 file:buffer,

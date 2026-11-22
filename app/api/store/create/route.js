@@ -15,7 +15,7 @@ export async function POST(request){
         const email = formData.get("email")
         const contact = formData.get("contact")
         const address = formData.get("address")
-        const image = formData.get("image")
+        const image = formData.getAll("image")
 
         if(!username || !email || !contact || !name || !address || !image){
             return NextResponse.json({error:"missing store info"}, {status:400})

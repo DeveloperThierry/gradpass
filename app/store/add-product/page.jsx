@@ -1,5 +1,7 @@
 'use client'
 import { assets } from "@/assets/assets"
+import { useAuth } from "@clerk/nextjs"
+import axios from "axios"
 import Image from "next/image"
 import { useState } from "react"
 import { toast } from "react-hot-toast"
@@ -23,7 +25,7 @@ export default function StoreAddProduct() {
         category: "",
     })
     const [loading, setLoading] = useState(false)
-
+    const {getToken} = useAuth()
 
     const onChangeHandler = (e) => {
         setProductInfo({ ...productInfo, [e.target.name]: e.target.value })
@@ -32,14 +34,50 @@ export default function StoreAddProduct() {
     const onSubmitHandler = async (e) => {
         e.preventDefault()
         // Logic to add a product
-        
+        try {
+            if(!images[1] && !images[2] && !images[3] && !images[4]){
+                return toast.error('Please upload at least one image')
+            }
+            setLoading(true)
+            const formData = new FormData()
+            formData.append('name', productInfo.name)
+            formData.append('description', productInfo.description)
+            formData.append('mrp', productInfo.mrp)
+            formData.append('price', productInfo.price)
+            formData.append('category', productInfo.category)
+
+            //adding images to formdata
+            Object.keys(images).forEach((key) => {
+                images[key] && formData.append('images', images[key])
+            })
+
+            const token = await getToken()
+            const {data} = await axios.post('/api/store/product', formData, {
+                headers:{
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            toast.success(data.message)
+            //reset form
+            setProductInfo({name: "",
+                description: "",
+                mrp: 0,
+                price: 0,
+                category: "",})
+            //reset images
+            setImages({ 1: null, 2: null, 3: null, 4: null })
+        } catch (error) {
+            toast.error(error?.response?.data?.error || error.message)
+        } finally {
+            setLoading(false)
+        }
     }
 
 
     return (
         <form onSubmit={e => toast.promise(onSubmitHandler(e), { loading: "Adding Product..." })} className="text-slate-500 mb-28">
-            <h1 className="text-2xl">Add New <span className="text-slate-800 font-medium">Products</span></h1>
-            <p className="mt-7">Product Images</p>
+            <h1 className="text-2xl">Add New <span className="text-slate-800 font-medium">Ticket</span></h1>
+            <p className="mt-7">Upload Images</p>
 
             <div htmlFor="" className="flex gap-3 mt-4">
                 {Object.keys(images).map((key) => (
@@ -51,13 +89,13 @@ export default function StoreAddProduct() {
             </div>
 
             <label htmlFor="" className="flex flex-col gap-2 my-6 ">
-                Name
-                <input type="text" name="name" onChange={onChangeHandler} value={productInfo.name} placeholder="Enter product name" className="w-full max-w-sm p-2 px-4 outline-none border border-slate-200 rounded" required />
+                Ticket or Cermony Name
+                <input type="text" name="name" onChange={onChangeHandler} value={productInfo.name} placeholder="Enter University & Ceremony Name (e.g., Main Commencement Ceremony - Section 104 or UF Engineering Morning Ceremony)" className="w-full max-w-sm p-2 px-4 outline-none border border-slate-200 rounded" required />
             </label>
 
             <label htmlFor="" className="flex flex-col gap-2 my-6 ">
-                Description
-                <textarea name="description" onChange={onChangeHandler} value={productInfo.description} placeholder="Enter product description" rows={5} className="w-full max-w-sm p-2 px-4 outline-none border border-slate-200 rounded resize-none" required />
+                Ticket Details
+                <textarea name="description" onChange={onChangeHandler} value={productInfo.description} placeholder="Enter ticket details (e.g. Section/Row, Transfer Method (Ticketmaster/Student Portal/PDF), & Campus Meetup Spot)" rows={5} className="w-full max-w-sm p-2 px-4 outline-none border border-slate-200 rounded resize-none" required />
             </label>
 
             <div className="flex gap-5">
