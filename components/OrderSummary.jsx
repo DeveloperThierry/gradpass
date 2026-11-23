@@ -89,7 +89,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                 <label htmlFor="STRIPE" className='cursor-pointer'>Stripe Payment</label>
             </div>
             <div className='my-4 py-4 border-y border-slate-200 text-slate-400'>
-                <p>Address</p>
+                <p>Campus Meetup Location</p>
                 {
                     selectedAddress ? (
                         <div className='flex gap-2 items-center'>
@@ -101,7 +101,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                             {
                                 addressList.length > 0 && (
                                     <select className='border border-slate-400 p-2 w-full my-3 outline-none rounded' onChange={(e) => setSelectedAddress(addressList[e.target.value])} >
-                                        <option value="">Select Address</option>
+                                        <option value="">Select Location</option>
                                         {
                                             addressList.map((address, index) => (
                                                 <option key={index} value={index}>{address.name}, {address.city}, {address.state}, {address.zip}</option>
@@ -110,7 +110,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                                     </select>
                                 )
                             }
-                            <button className='flex items-center gap-1 text-slate-600 mt-1' onClick={() => setShowAddressModal(true)} >Add Address <PlusIcon size={18} /></button>
+                            <button className='flex items-center gap-1 text-slate-600 mt-1' onClick={() => setShowAddressModal(true)} >Add Location <PlusIcon size={18} /></button>
                         </div>
                     )
                 }

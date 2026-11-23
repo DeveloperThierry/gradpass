@@ -130,7 +130,7 @@ export default function StoreOrders() {
                             <p><span className="text-purple-700">Name:</span> {selectedOrder.user?.name}</p>
                             <p><span className="text-purple-700">Email:</span> {selectedOrder.user?.email}</p>
                             <p><span className="text-purple-700">Phone:</span> {selectedOrder.address?.phone}</p>
-                            <p><span className="text-purple-700">Address:</span> {`${selectedOrder.address?.street}, ${selectedOrder.address?.city}, ${selectedOrder.address?.state}, ${selectedOrder.address?.zip}, ${selectedOrder.address?.country}`}</p>
+                            <p><span className="text-purple-700">Meetup Location:</span> {`${selectedOrder.address?.street}, ${selectedOrder.address?.city}, ${selectedOrder.address?.state}, ${selectedOrder.address?.zip}, ${selectedOrder.address?.country}`}</p>
                         </div>
 
                         {/* Products */}

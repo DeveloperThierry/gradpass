@@ -51,14 +51,14 @@ export default function Cart() {
 
             <div className="max-w-7xl mx-auto ">
                 {/* Title */}
-                <PageTitle heading="My Cart" text="items in your cart" linkText="Add more" />
+                <PageTitle heading="My Cart" text="tickets in your cart" linkText="Add more" />
 
                 <div className="flex items-start justify-between gap-5 max-lg:flex-col">
 
                     <table className="w-full max-w-4xl text-slate-600 table-auto">
                         <thead>
                             <tr className="max-sm:text-sm">
-                                <th className="text-left">Product</th>
+                                <th className="text-left">Ticket</th>
                                 <th>Quantity</th>
                                 <th>Total Price</th>
                                 <th className="max-md:hidden">Remove</th>

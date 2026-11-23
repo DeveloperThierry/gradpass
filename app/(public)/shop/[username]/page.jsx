@@ -2,7 +2,7 @@
 import ProductCard from "@/components/ProductCard"
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
-import { MailIcon, MapPinIcon } from "lucide-react"
+import { MailIcon, MapPinIcon, PhoneIcon } from "lucide-react"
 import Loading from "@/components/Loading"
 import Image from "next/image"
 import { dummyStoreData, productDummyData } from "@/assets/assets"
@@ -50,6 +50,11 @@ export default function StoreShop() {
                                 <MailIcon className="w-4 h-4 text-gray-500 mr-2" />
                                 <span>{storeInfo.email}</span>
                             </div>
+                            <div className="flex items-center">
+                                <PhoneIcon className="w-4 h-4 text-gray-500 mr-2" />
+                                <span>{storeInfo.contact}</span>
+                            </div>
+                            
                            
                         </div>
                     </div>
