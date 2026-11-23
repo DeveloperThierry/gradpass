@@ -1,7 +1,6 @@
 import prisma from "@/lib/prisma";
 import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
-import { arrayTooltipSearcher } from "recharts/types/state/optionsSlice";
 
 export async function POST(request) {
   try {
@@ -18,7 +17,7 @@ export async function POST(request) {
       !addressId ||
       !paymentMethod ||
       !items ||
-      !arrayTooltipSearcher.isArray(items) ||
+      !Array.isArray(items) ||
       items.length === 0
     ) {
       return NextResponse.json(
@@ -29,7 +28,7 @@ export async function POST(request) {
 
     let coupon = null;
 
-    if (coupon) {
+    if (couponCode) {
       coupon = await prisma.coupon.findUnique({
         where: { code: couponCode },
       });
@@ -114,7 +113,7 @@ export async function POST(request) {
     //clear cart
     await prisma.user.update({
         where:{id:userId},
-        data:{carrt:{}}
+        data:{cart:{}}
     })
 
     return NextResponse.json({message:'Orders Placed Successfully'})
