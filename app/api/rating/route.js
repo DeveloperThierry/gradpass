@@ -26,3 +26,23 @@ export async function POST(request){
             return NextResponse.json({error:error.code || error.message}, {status:400})
         }
 }
+
+//Get all ratings for a user
+export async function GET(request){
+    try {
+        const {userId} = getAuth()
+        if(!userId) {
+            return NextResponse.json({error:'Unauthorized'}, {status:401})
+        }
+
+        const ratings = await prisma.rating.findMany({
+            where:{userId}
+        })
+
+        return NextResponse.json({ratings})
+
+    } catch (error) {
+        console.error(error)
+        return NextResponse.json({error:error.code || error.message}, {status:400})
+    }
+}
